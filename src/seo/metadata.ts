@@ -7,7 +7,7 @@ export function personData(config: SiteConfig) {
     name: profile.name,
     alternateName: profile.handle,
     ...(config.origin ? { url: `${config.origin}/` } : {}),
-    sameAs: [profile.linkedin, profile.github],
+    sameAs: [profile.linkedin, profile.github, profile.blog],
   };
 }
 

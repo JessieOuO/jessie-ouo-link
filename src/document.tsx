@@ -54,7 +54,7 @@ export function renderDocument({ config, stylesheet, fonts, notFound = false }: 
         <meta property="og:image:height" content="630" />
         <meta
           property="og:image:alt"
-          content="Jessie Hsieh’s homepage with OuO, a smiling blue bunny waving hello"
+          content="Jessie Hsieh’s homepage with a cat sitting on a green crocodile"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />

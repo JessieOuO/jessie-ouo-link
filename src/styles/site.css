@@ -19,7 +19,8 @@
   --flower-center: #fff6d8;
   --scene-ground: #e8eff8;
   --scene-cloud: #fcfdff;
-  --scene-floor: #d6e1ef;
+  --scene-meadow: #e2edda;
+  --scene-sun: #f4e5af;
   --font: "Nunito", ui-rounded, "Hiragino Maru Gothic ProN", system-ui, sans-serif;
   --body-size: 1.0625rem;
   --small-size: 0.875rem;
@@ -96,6 +97,11 @@ p {
 }
 .flower-center {
   fill: var(--flower-center);
+}
+.masthead nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .masthead nav a {
   border-radius: 100px;
@@ -197,14 +203,17 @@ h1 {
 .illustration {
   width: 100%;
   max-width: 560px;
+  aspect-ratio: 520 / 460;
   justify-self: center;
   position: relative;
+  isolation: isolate;
 }
-.ouo-scene {
+.scene-background {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%;
 }
 .scene-ground {
   fill: var(--scene-ground);
@@ -212,28 +221,19 @@ h1 {
 .scene-cloud {
   fill: var(--scene-cloud);
 }
-.scene-floor {
-  fill: var(--scene-floor);
+.scene-meadow {
+  fill: var(--scene-meadow);
 }
-.ouo-character {
-  transform-origin: 280px 380px;
+.scene-sun {
+  fill: var(--scene-sun);
 }
-.waving-hand {
-  transform-origin: 380px 285px;
-}
-.hello-bubble {
-  transform-origin: 400px 100px;
-}
-.illustration-caption {
-  margin-top: -9px;
-  color: var(--muted);
-  font-size: var(--small-size);
-  text-align: center;
-  letter-spacing: 0.015em;
-}
-.illustration-caption span {
-  font-weight: 900;
-  color: var(--ink);
+.blog-artwork {
+  position: absolute;
+  top: -1.9565%;
+  left: 2.5%;
+  display: block;
+  width: 96.1538%;
+  height: auto;
 }
 
 .footer {
@@ -278,7 +278,8 @@ h1 {
     --flower: #b4cde8;
     --scene-ground: #303e52;
     --scene-cloud: #3b4b61;
-    --scene-floor: #263345;
+    --scene-meadow: #3b5147;
+    --scene-sun: #c5ae70;
   }
 }
 
@@ -303,6 +304,10 @@ h1 {
   }
   .masthead {
     min-height: 88px;
+    gap: 16px;
+  }
+  .masthead nav {
+    gap: 8px;
   }
   .wordmark {
     font-size: 23px;
@@ -312,7 +317,7 @@ h1 {
     height: 30px;
   }
   .masthead nav a {
-    padding-inline: 18px;
+    padding-inline: 14px;
   }
   .card {
     grid-template-columns: 1fr;
@@ -348,10 +353,6 @@ h1 {
   .illustration {
     width: min(100%, 370px);
   }
-  .illustration-caption {
-    margin-top: -5px;
-    font-size: 13px;
-  }
   .footer {
     min-height: 88px;
     flex-wrap: wrap;
@@ -366,68 +367,12 @@ h1 {
   .card {
     animation: arrive 450ms var(--ease) both;
   }
-  .ouo-character {
-    animation: happy-bob 5s ease-in-out;
-  }
-  .waving-hand {
-    animation: little-wave 4s ease-in-out;
-  }
-  .hello-bubble {
-    animation: hello 5s ease-in-out;
-  }
-  .card:has(.primary-link:is(:hover, :focus-visible)) .waving-hand {
-    animation: wave-hello 1200ms ease-in-out 2;
-  }
-  @keyframes wave-hello {
-    0%,
-    100% {
-      transform: rotate(0);
-    }
-    30% {
-      transform: rotate(-12deg);
-    }
-    65% {
-      transform: rotate(6deg);
-    }
-  }
   @keyframes arrive {
     from {
       transform: translateY(8px);
     }
     to {
       transform: translateY(0);
-    }
-  }
-  @keyframes happy-bob {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-  @keyframes little-wave {
-    0%,
-    18%,
-    35%,
-    100% {
-      transform: rotate(0);
-    }
-    24% {
-      transform: rotate(-12deg);
-    }
-    30% {
-      transform: rotate(6deg);
-    }
-  }
-  @keyframes hello {
-    0%,
-    100% {
-      transform: rotate(-3deg);
-    }
-    50% {
-      transform: rotate(2deg);
     }
   }
 }

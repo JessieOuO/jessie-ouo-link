@@ -1,7 +1,7 @@
 import { profile } from "../config/site.ts";
 import { Arrow } from "./arrow.tsx";
+import { BlogIllustration } from "./blog-illustration.tsx";
 import { ExternalLink } from "./external-link.tsx";
-import { OuoIllustration } from "./ouo-illustration.tsx";
 
 export function IdentityCard() {
   return (
@@ -23,7 +23,7 @@ export function IdentityCard() {
           <p className="contact-note">Good conversations start with a hello.</p>
         </div>
       </div>
-      <OuoIllustration />
+      <BlogIllustration />
     </main>
   );
 }

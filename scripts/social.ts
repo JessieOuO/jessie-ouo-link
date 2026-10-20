@@ -16,7 +16,7 @@ try {
   await page.goto(server.url.href);
   await page.addStyleTag({
     content:
-      ".page{width:1200px;min-height:630px;padding:0 60px}.masthead,.footer{display:none}.card{width:1080px;height:630px;min-height:630px;margin:0;gap:28px}.card-copy{padding:0}.card h1{font-size:72px}.illustration{width:520px}.card,.ouo-character,.waving-hand,.hello-bubble,.little-spark{animation:none}",
+      ".page{width:1200px;min-height:630px;padding:0 60px}.masthead,.footer{display:none}.card{width:1080px;height:630px;min-height:630px;margin:0;gap:28px}.card-copy{padding:0}.card h1{font-size:72px}.illustration{width:520px}.card{animation:none}",
   });
   await page.evaluate(() => document.fonts.ready);
   await mkdir(resolve(root, "public"), { recursive: true });

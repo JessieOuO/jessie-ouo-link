@@ -13,8 +13,9 @@ export function HomePage() {
         <a href="/" className="wordmark" aria-label="Jessie Hsieh home">
           <FlowerMark /> jessie
         </a>
-        <nav aria-label="Social profiles">
+        <nav aria-label="More about Jessie">
           <ExternalLink href={profile.github}>GitHub</ExternalLink>
+          <ExternalLink href={profile.blog}>Blog</ExternalLink>
         </nav>
       </header>
       <IdentityCard />

@@ -21,6 +21,7 @@ const profileSchema = z.strictObject({
   description: z.string().min(50).max(160),
   linkedin: z.url({ protocol: /^https$/ }),
   github: z.url({ protocol: /^https$/ }),
+  blog: z.url({ protocol: /^https$/ }),
 });
 
 export const profile = profileSchema.parse({
@@ -30,6 +31,7 @@ export const profile = profileSchema.parse({
     "The personal home of Jessie Hsieh, also known as OuO. Find my experience on LinkedIn, explore my code on GitHub, and say hello.",
   linkedin: "https://www.linkedin.com/in/jessie-hsieh-ouo",
   github: "https://github.com/JessieOuO",
+  blog: "https://blog.jessie-ouo.link/",
 });
 
 export type SiteConfig = Readonly<{ origin: string | null; indexable: boolean }>;

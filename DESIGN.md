@@ -1,25 +1,19 @@
-# OuO says hello
+# A little corner of Jessie’s internet
 
-The owner rejected the first editorial calling card and explicitly asked for a cuter design. That correction is the current brief. The original [Taste Skill](https://www.tasteskill.dev/) draw (The page is the object, seed 2097484368) remains in `.taste-skill/direction.json` as historical evidence; its industrial typography and brass palette are superseded, not silently followed.
+The current brief preserves the soft palette and rounded Nunito typography, replaces the right-hand character with the owner’s blog image of a cat sitting on a crocodile, removes the image caption and adds a Blog link next to GitHub.
 
-## Idea and visual direction
+## Composition and artwork
 
-The OuO handle becomes the face of a small blue bunny: two eyes and a little u-shaped smile. It waves hello while holding a heart-sealed letter, with a small pink star beside it. The illustration belongs to this identity rather than borrowing a stock portrait or a generic product graphic.
+The exact requested illustration comes from the Test Automation section of [Jessie’s blog](https://blog.jessie-ouo.link/). Its cream/yellow cat and green crocodile sit over the existing pale blue sky and clouds. A soft yellow sun and pale sage meadow echo the image’s colors. The overall cream background, blue text/button and other page layout remain consistent with the approved cute direction.
 
-Cream paper, dusty blue ink, powder blue, blush pink and a little butter yellow make the page feel warm and friendly. Nunito supplies rounded letterforms at every size. One generous pill button opens the actual LinkedIn profile. The secondary GitHub link remains in the header. There are no extra marketing sections, invented career claims, counters or testimonials.
+`BlogIllustration` layers a decorative SVG background with the original transparent artwork. It has meaningful image alt text and no visible text underneath. The art is resized into 480, 640 and 960px lossless WebP variants and served locally with responsive selection, high fetch priority and immutable content-hashed filenames. The full transparent canvas is retained. Source details are in [ASSETS.md](ASSETS.md).
 
-Desktop pairs the introduction with the large illustration on one continuous ground. On a phone, the introduction and LinkedIn action appear first, followed by the character. System dark mode keeps the same pastel character and changes the surrounding ground to midnight blue.
+The original bunny, letter, star and their waving animation are removed from the hero. The page keeps its short entrance and control feedback with reduced-motion support. The small existing flower wordmark and footer remain unchanged. The existing favicon is retained.
 
-## Illustration and motion
+On a phone the text/action come first, followed by the image. Both header links fit at 320px. System dark mode preserves the original artwork and adapts the sky, meadow and surrounding page. GitHub, Blog and LinkedIn all use real destinations; Blog is also included in the Person structured data.
 
-`OuoIllustration` is original inline SVG, built specifically for this page. `FlowerMark` is a small reusable SVG for the wordmark and sign-off. The favicon carries the same bunny face. No raster character assets, stock images, illustration libraries or third-party image requests are required. The social PNG is generated from the real page and is not downloaded by the homepage.
+## Taste Skill context
 
-CSS animates the bunny’s gentle bob, hand wave and greeting bubble using transforms. The greeting settles within five seconds rather than consuming idle animation frames indefinitely. Hovering or focusing the LinkedIn action gives another little wave. Controls have simple press/hover feedback. `prefers-reduced-motion` removes the movement; no script is required for the content or the links.
+The original [Taste Skill](https://www.tasteskill.dev/) draw in `.taste-skill/direction.json` belongs to the first editorial attempt and is historical, superseded by the owner’s cute direction. This update is a bounded change within that approved direction, not a new random draw. The retained craft principles are clear identity, short headlines, one primary action, truthful content, accessible contrast, responsive layout and review in a real browser.
 
-## Skill application and departures
-
-Taste’s original uppercase poster direction was the wrong fit for the owner. The new direction follows the owner’s specific correction and retains the useful craft checks: clear first-screen identity, short headlines, one main action, truthful content, responsive composition, readable contrast and visual review in a real browser.
-
-The owner’s cute direction takes precedence over the old dealt palette and fonts. The cream ground, flowers and character drawing are intentional. The skill’s minimum four raster pictures, eight moving elements and footage requirement would add irrelevant media to this small page, so they are not applied. Inspector findings are recorded honestly in [VALIDATION.md](VALIDATION.md); no full skill pass is claimed.
-
-All pictures are original drawings. There are no found assets to credit and no sample career details to replace. The real production domain is still supplied through `SITE_URL` at deployment.
+The earlier minimum-four-images/eight-moving-elements/video quotas remain inapplicable to this small, performance-focused personal page. No full inspector pass is claimed. The current visual intent is one recognizable image selected by the owner, with a few matching color fields and no image caption.

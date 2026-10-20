@@ -29,7 +29,11 @@ describe("pre-rendered HTML and search metadata", () => {
       "@type": "Person",
       name: "Jessie Hsieh",
       url: "https://jessie.example/",
-      sameAs: ["https://www.linkedin.com/in/jessie-hsieh-ouo", "https://github.com/JessieOuO"],
+      sameAs: [
+        "https://www.linkedin.com/in/jessie-hsieh-ouo",
+        "https://github.com/JessieOuO",
+        "https://blog.jessie-ouo.link/",
+      ],
     });
   });
 

@@ -41,6 +41,20 @@ try {
         "Wrong GitHub URL",
       );
       assert(
+        (await page.getByRole("link", { name: "Blog", exact: true }).getAttribute("href")) ===
+          profile.blog,
+        "Wrong blog URL",
+      );
+      assert(
+        await page
+          .locator(".blog-artwork")
+          .evaluate(
+            (element) =>
+              element instanceof HTMLImageElement && element.complete && element.naturalWidth > 0,
+          ),
+        "Blog artwork did not load",
+      );
+      assert(
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
         `Overflow at ${width}`,
       );
