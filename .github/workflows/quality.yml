@@ -1,0 +1,35 @@
+name: Quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: 1.4.3
+      - run: bun install --frozen-lockfile
+      - run: bun run verify
+      - name: Audit production build with a test-only origin
+        run: bun run build
+        env:
+          SITE_URL: https://jessie.example
+      - name: Check browser accessibility and performance
+        run: |
+          bun run test:browser
+          bun run perf
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: browser-and-lighthouse
+          path: reports/
+          if-no-files-found: ignore
