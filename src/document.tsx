@@ -28,8 +28,8 @@ export function renderDocument({ config, stylesheet, fonts, notFound = false }: 
           content={config.indexable && !notFound ? "index, follow" : "noindex, nofollow"}
         />
         <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#e8e8e3" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#181715" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#fcfaf5" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#202938" media="(prefers-color-scheme: dark)" />
         {canonical && <link rel="canonical" href={canonical} />}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {fonts.map((font) => (
@@ -52,7 +52,10 @@ export function renderDocument({ config, stylesheet, fonts, notFound = false }: 
         {config.origin && <meta property="og:image" content={`${config.origin}/social.png`} />}
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Jessie Hsieh’s personal card, signed OuO" />
+        <meta
+          property="og:image:alt"
+          content="Jessie Hsieh’s homepage with OuO, a smiling blue bunny waving hello"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={profile.description} />

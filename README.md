@@ -1,8 +1,8 @@
 # Jessie Hsieh · OuO
 
-A personal domain homepage with LinkedIn as its primary action. Designed with [Taste Skill](https://www.tasteskill.dev/) as a two-ink personal calling card.
+A friendly personal homepage with LinkedIn as its primary action. Rounded typography, soft blue and pink, and an original OuO bunny waving hello. Uses [Taste Skill](https://www.tasteskill.dev/) guidance, with the owner’s cute visual direction taking precedence over the earlier editorial style.
 
-![Jessie Hsieh’s personal calling card](public/social.png)
+![Jessie Hsieh’s homepage with the OuO bunny](public/social.png)
 
 React produces complete HTML at build time. The browser receives **zero executable JavaScript**, local WOFF2 fonts and one minified, content-hashed stylesheet. Cloudflare Workers serves the files directly through Workers Static Assets; no Worker runtime or database is needed.
 
@@ -73,8 +73,8 @@ tests/            production configuration and rendered SEO contracts
 
 All application, build, tooling and test code is strict TypeScript 7, targeting ESNext. `node:` imports are Bun’s built-in compatibility APIs; the project never launches the Node runtime. Vitest calls its server test environment `node`, but runs here through `bun --bun vitest`.
 
-The two fonts are self-hosted, Latin-only and licensed under the SIL Open Font License. Their license texts are in `licenses/`. There are no external font requests, analytics, cookies or third-party embeds. React and Zod are build-time dependencies, not browser payloads.
+The single Nunito variable font is self-hosted, Latin-only and licensed under the SIL Open Font License. Its license text is in `licenses/`. The original SVG illustration renders inline, with no image download or illustration library. There are no external font requests, analytics, cookies or third-party embeds. React and Zod are build-time dependencies, not browser payloads.
 
-shadcn was considered; this page only needs links, so native elements keep it smaller and accessible. Firebase/Firestore are unnecessary for a static personal card and have not been added. No job title, biography, employer, location or availability is invented. Update identity in `src/config/site.ts` and copy in `src/components/identity-card.tsx` when you want to expand the page.
+shadcn was considered; this page only needs links, so native elements keep it smaller and accessible. Firebase/Firestore are unnecessary for this static homepage and have not been added. No job title, biography, employer, location or availability is invented. Update identity in `src/config/site.ts` and copy in `src/components/identity-card.tsx` when you want to expand the page.
 
 See [DESIGN.md](DESIGN.md) for Taste Skill decisions and explicitly documented exceptions to its image and animation quotas.

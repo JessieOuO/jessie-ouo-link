@@ -1,4 +1,5 @@
 import { ExternalLink } from "../components/external-link.tsx";
+import { FlowerMark } from "../components/flower-mark.tsx";
 import { IdentityCard } from "../components/identity-card.tsx";
 import { profile } from "../config/site.ts";
 
@@ -10,7 +11,7 @@ export function HomePage() {
       </a>
       <header className="masthead">
         <a href="/" className="wordmark" aria-label="Jessie Hsieh home">
-          Jessie Hsieh
+          <FlowerMark /> jessie
         </a>
         <nav aria-label="Social profiles">
           <ExternalLink href={profile.github}>GitHub</ExternalLink>
@@ -18,7 +19,9 @@ export function HomePage() {
       </header>
       <IdentityCard />
       <footer className="footer">
-        <p>A little corner. A lot of possibility.</p>
+        <p className="footer-greeting">
+          <FlowerMark /> Thanks for stopping by.
+        </p>
         <p>
           © {new Date().getUTCFullYear()} {profile.name}
         </p>

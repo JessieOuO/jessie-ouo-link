@@ -1,26 +1,25 @@
-# Personal calling card
+# OuO says hello
 
-Applied skill: [Taste Skill v2](https://github.com/Leonxlnx/taste-skill/blob/main/skills/taste-skill/SKILL.md), retrieved 2026-10-20. The scripts run under Bun, respecting this project’s runtime requirement.
+The owner rejected the first editorial calling card and explicitly asked for a cuter design. That correction is the current brief. The original [Taste Skill](https://www.tasteskill.dev/) draw (The page is the object, seed 2097484368) remains in `.taste-skill/direction.json` as historical evidence; its industrial typography and brass palette are superseded, not silently followed.
 
-The draw selected **The page is the object**, seed **2097484368**. The recorded direction is `.taste-skill/direction.json`. It deals Bebas Neue / EB Garamond and newsprint / brass: one ground, one paper tone, dark ink and a single brass action.
+## Idea and visual direction
 
-## Brief, argument and copy
+The OuO handle becomes the face of a small blue bunny: two eyes and a little u-shaped smile. It waves hello while holding a heart-sealed letter, with a small pink star beside it. The illustration belongs to this identity rather than borrowing a stock portrait or a generic product graphic.
 
-Known subject material: Jessie Hsieh; the exact LinkedIn profile URL; the GitHub account JessieOuO; the handle OuO recurring in both URLs; a personal domain; one requested connection action; future Cloudflare Workers hosting; unusually strict performance requirements. There are no supplied photographs or career facts.
+Cream paper, dusty blue ink, powder blue, blush pink and a little butter yellow make the page feel warm and friendly. Nunito supplies rounded letterforms at every size. One generous pill button opens the actual LinkedIn profile. The secondary GitHub link remains in the header. There are no extra marketing sections, invented career claims, counters or testimonials.
 
-On this page, **Jessie’s recurring OuO handle becomes the face and signature on a personal calling card**. The other half carries the real name and the LinkedIn destination. The visitor’s action is to open the real LinkedIn profile. GitHub is a secondary, plain text link.
+Desktop pairs the introduction with the large illustration on one continuous ground. On a phone, the introduction and LinkedIn action appear first, followed by the character. System dark mode keeps the same pastel character and changes the surrounding ground to midnight blue.
 
-The argument has one unit: this is Jessie’s personal homepage, with a direct route to professional experience and contact. A second marketing section would add claims the brief does not supply, so there is no filler biography, portfolio, testimonial or form.
+## Illustration and motion
 
-Copy: “Jessie Hsieh”; “A small home on the internet. My experience, code, and next conversation.”; “Connect on LinkedIn”; “For the work I do, and the things we could do together.”; signature “OuO”; “A familiar face. A new connection.”; sign-off “A little corner. A lot of possibility.”
+`OuoIllustration` is original inline SVG, built specifically for this page. `FlowerMark` is a small reusable SVG for the wordmark and sign-off. The favicon carries the same bunny face. No raster character assets, stock images, illustration libraries or third-party image requests are required. The social PNG is generated from the real page and is not downloaded by the homepage.
 
-## Scope decisions and exceptions
+CSS animates the bunny’s gentle bob, hand wave and greeting bubble using transforms. The greeting settles within five seconds rather than consuming idle animation frames indefinitely. Hovering or focusing the LinkedIn action gives another little wave. Controls have simple press/hover feedback. `prefers-reduced-motion` removes the movement; no script is required for the content or the links.
 
-- Keep the drawn direction, type, palette and the printed card’s filled-panel geometry. The dealt five-folder hero assumes five sections; the coupon form assumes a backend and four inputs. Neither content exists. They are reduced to one calling card and a genuine outbound link, following the instruction not to invent content to fill a blueprint. No random redraw was used.
-- The user’s explicit critical-performance requirement takes precedence over the skill’s four-photograph and eight-moving-element quotas. There are no honest subject photographs, and unrelated archive images would add transfer cost without helping someone reach LinkedIn. This is intentionally type-only. The OuO signature is text, not a substitute portrait.
-- Use one 400ms transform entrance, immediate visible content, restrained link feedback and full reduced-motion support. No scroll scenes, video or motion library. The inspector runs without waiving its findings; quota failures are reported as intentional limitations.
-- The one accent belongs to the primary action. No gradients, shadows, thin borders, floating navigation, badges, numbered labels or decorative timestamps.
-- Desktop is a landscape card. On a phone the name/contact comes first and the signature becomes a compact horizontal back-of-card panel. System dark mode preserves contrast and hierarchy.
-- The only raster image is the share card, generated from this actual design and not downloaded by the homepage. No stock images, clips, invented proof, sample career claims or asset credits are needed.
+## Skill application and departures
 
-Browser evidence, measured checks and the final visual critique are recorded after verification in `VALIDATION.md`.
+Taste’s original uppercase poster direction was the wrong fit for the owner. The new direction follows the owner’s specific correction and retains the useful craft checks: clear first-screen identity, short headlines, one main action, truthful content, responsive composition, readable contrast and visual review in a real browser.
+
+The owner’s cute direction takes precedence over the old dealt palette and fonts. The cream ground, flowers and character drawing are intentional. The skill’s minimum four raster pictures, eight moving elements and footage requirement would add irrelevant media to this small page, so they are not applied. Inspector findings are recorded honestly in [VALIDATION.md](VALIDATION.md); no full skill pass is claimed.
+
+All pictures are original drawings. There are no found assets to credit and no sample career details to replace. The real production domain is still supplied through `SITE_URL` at deployment.

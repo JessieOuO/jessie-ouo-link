@@ -16,10 +16,7 @@ export async function buildSite(preview = false) {
   // Keep fonts external: a CSS data URI would delay text and prevent independent caching.
   const fonts: { path: string; size: number }[] = [];
   let cssSource = await Bun.file(resolve(root, "src/styles/site.css")).text();
-  for (const sourcePath of [
-    "@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2",
-    "@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2",
-  ]) {
+  for (const sourcePath of ["@fontsource-variable/nunito/files/nunito-latin-wght-normal.woff2"]) {
     const file = Bun.file(resolve(root, "node_modules", sourcePath));
     const bytes = await file.arrayBuffer();
     const hash = new Bun.CryptoHasher("sha256").update(bytes).digest("hex").slice(0, 12);

@@ -29,7 +29,7 @@ try {
       });
       await page.goto(server.url.href);
       await page.evaluate(() => document.fonts.ready);
-      assert((await page.locator("h1").innerText()) === "Jessie\nHsieh", "Missing title");
+      assert((await page.locator("h1").innerText()).includes(profile.name), "Missing title");
       assert(
         (await page.getByRole("link", { name: "Connect on LinkedIn" }).getAttribute("href")) ===
           profile.linkedin,
