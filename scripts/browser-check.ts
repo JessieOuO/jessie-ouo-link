@@ -5,6 +5,7 @@ import { profile } from "../src/config/site.ts";
 import { root } from "./build.ts";
 import { launchBrowser } from "./lib/browser.ts";
 import { startStaticServer } from "./lib/static-server.ts";
+import { checkThemes } from "./lib/theme-check.ts";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -59,8 +60,16 @@ try {
         `Overflow at ${width}`,
       );
       assert(
-        (await page.locator('script:not([type="application/ld+json"])').count()) === 0,
-        "Executable JavaScript shipped",
+        (await page.locator('script:not([type="application/ld+json"])').count()) === 1,
+        "Expected only the theme enhancement script",
+      );
+      assert(
+        await page.getByRole("button", { name: "Dark mode", exact: true }).isVisible(),
+        "Theme button is unavailable",
+      );
+      assert(
+        (await page.locator("html").getAttribute("data-theme")) === colorScheme,
+        "Initial theme does not follow the system",
       );
       const results = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa", "best-practice"])
@@ -107,6 +116,7 @@ try {
     "404 has no route home",
   );
   console.info("JavaScript disabled and HTTP 404 checks passed.");
+  await checkThemes(browser, server.url);
 } finally {
   await browser.close();
   server.stop(true);

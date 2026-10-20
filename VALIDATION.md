@@ -1,25 +1,28 @@
-# Blog artwork update verification
+# Sun/moon theme toggle verification
 
-Verified 2026-10-20 with Bun 1.4.3 and Chromium. This bounded update keeps the approved cute palette, replaces the hero character with the requested cat sitting on a crocodile from the owner’s blog, removes its caption and adds Blog beside GitHub. The production audit uses `https://jessie.example` as an unpublished test fixture; set the real `SITE_URL` before deployment.
+Verified 2026-10-20 with Bun 1.4.3 and Chromium. This update gives light mode a sun with rays, dark mode a crescent moon with stars, and adds a header toggle that remembers a manual choice. The approved palette, blog artwork, links and caption-free composition remain. The production audit uses `https://jessie.example` as an unpublished test fixture; set the real `SITE_URL` before deployment.
 
 ## Checks
 
-- Biome formatting/lint/check, including the React domain: passed.
-- TypeScript 7 strict / ESNext: passed.
-- Vitest: all 14 tests passed, including the updated Person structured data with the blog URL.
-- Browser checks at 320, 390, 768 and 1440px, light and dark: passed. No horizontal overflow, browser console errors or axe WCAG A/AA / best-practice violations. Checked LinkedIn, GitHub and Blog destinations, successful artwork loading, keyboard/skip navigation, JavaScript disabled and HTTP 404 behavior.
-- Desktop and mobile visual review: original blog artwork is intact and transparent, sky/clouds remain, matching yellow/sage fields appear behind it, and there is no visible image caption. Both header links fit at 320px. Dark mode adapts the background while retaining the artwork’s colors.
-- No dependencies were added or changed. Existing Bun lockfile and pinned versions remain in place.
+- Biome formatting/lint/check with the React domain, TypeScript 7 strict / ESNext and all 14 Vitest tests: passed.
+- The rendered HTML test verifies one small theme script before the stylesheet, fully pre-rendered identity/links and unchanged SEO metadata.
+- Browser QA at 320, 390, 768 and 1440px, light and dark: passed. No horizontal overflow, console errors or axe WCAG A/AA / best-practice violations. Verified working social links, artwork loading, keyboard/skip navigation, theme button availability, JavaScript disabled and HTTP 404 behavior.
+- Theme behavior: passed for live system changes, pointer and keyboard switching, accessible pressed state, persistence across reloads with an opposing system theme, manual preference taking precedence, cross-tab updates and preference clearing.
+- Invalid saved preferences fall back to the system. Storage-disabled browsers can still switch for the current visit without uncaught errors. With JavaScript disabled, the scene and colors still follow the system and the inactive toggle is hidden.
+- The real local server enforces the generated CSP; successful browser interactions verify that the exact compiled script is permitted. There is no `unsafe-inline`, React hydration or extra script request.
+- Visually reviewed the sun, moon/stars and control in mobile light/dark and desktop dark screenshots, including the 320px header with both links and the 44px button.
 
 ## Transfer and rendering
 
-Production output: **5,451 bytes HTML**, **5,705 bytes CSS**, **39,128 bytes font**, **0 bytes executable browser JavaScript**. The self-hosted lossless WebP artwork variants are **37,164 bytes (480px)**, **51,958 bytes (640px)** and **86,846 bytes (960px)**; the browser chooses one using `srcset`/`sizes`, rather than downloading all variants. Image dimensions and the reserved illustration aspect ratio prevent layout shift. The image has high fetch priority and content-hashed immutable caching.
+Production HTML is **7,872 bytes**, including the **1,341-byte** minified inline theme script. CSS is **7,094 bytes**, and the font remains **39,128 bytes**. The content is still generated with React at build time; the browser receives only the small TypeScript-compiled preference enhancement, with no React runtime.
 
-The social PNG was regenerated from the real composed page; it is not loaded by the homepage. The artwork is served locally, so homepage rendering does not depend on the blog server. Source/provenance is recorded in [ASSETS.md](ASSETS.md).
+The build computes the theme script’s SHA-256 hash and places it in the generated Cloudflare CSP. The saved theme is applied before CSS/first paint, including the matching browser theme-color metadata. Both HTML pages include the same script. An explicit 4 KB script budget protects against accidental framework bundling.
+
+The lossless responsive artwork variants remain **37,164 bytes (480px)**, **51,958 bytes (640px)** and **86,846 bytes (960px)**. Their selection, high fetch priority, reserved dimensions and immutable caching are unchanged. The refreshed social PNG shows the light-mode sun and is not downloaded by the homepage. Image provenance remains in [ASSETS.md](ASSETS.md).
 
 ## Lighthouse mobile
 
-Three consecutive production-build runs using default mobile throttling:
+Three consecutive production-build runs with default mobile throttling:
 
 | Run | Performance | Accessibility | Best practices | SEO |
 | --- | ---: | ---: | ---: | ---: |
@@ -27,8 +30,6 @@ Three consecutive production-build runs using default mobile throttling:
 | 2 | 100 | 100 | 100 | 100 |
 | 3 | 100 | 100 | 100 | 100 |
 
-FCP approximately **0.8s**, LCP **1.5s**, TBT **0ms**, CLS **0**. These are local lab measurements, not measurements of the eventual public domain. Reports and screenshots are reproducible through the existing browser/performance scripts and uploaded by CI. Automated accessibility tools do not constitute a complete human WCAG conformance assessment.
+FCP approximately **0.8s**, LCP **1.5s**, TBT **0ms**, CLS **0**. These are local lab measurements. Reports/screenshots are generated by the existing scripts and uploaded by CI; the public domain still needs its own audit after deployment. Automated accessibility tools do not replace a full human WCAG assessment.
 
-## Design scope
-
-The real blog image supersedes the generated bunny and its wave interaction. No biography, job claims, additional sections or new primary actions were introduced. The existing flower wordmark, footer and favicon remain. [DESIGN.md](DESIGN.md) records the owner-directed composition and the historical Taste Skill context. This component update does not claim a full pass against the skill’s unrelated picture/motion quotas.
+No dependencies were added. [DESIGN.md](DESIGN.md) records the owner-directed visual scope and historical Taste Skill context; this bounded change makes no claim of a full pass against unrelated picture/motion quotas.

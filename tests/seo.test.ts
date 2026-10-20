@@ -4,16 +4,22 @@ import { renderDocument } from "../src/document.tsx";
 import { robots, sitemap } from "../src/seo/metadata.ts";
 
 const config = readSiteConfig({ SITE_URL: "https://jessie.example" });
-const options = { config, stylesheet: "/assets/site-test.css", fonts: ["/assets/font-test.woff2"] };
+const options = {
+  config,
+  stylesheet: "/assets/site-test.css",
+  fonts: ["/assets/font-test.woff2"],
+  themeScript: "document.documentElement.dataset.theme='light';",
+};
 
 describe("pre-rendered HTML and search metadata", () => {
-  it("ships the primary destination and identity without executable JavaScript", () => {
+  it("pre-renders identity and links with one small progressive-enhancement script", () => {
     const html = renderDocument(options);
     expect(html).toContain("<!doctype html>");
     expect(html.match(/<h1[ >]/g)).toHaveLength(1);
     expect(html).toContain('href="https://www.linkedin.com/in/jessie-hsieh-ouo"');
     expect(html).toContain('href="https://github.com/JessieOuO"');
-    expect(html).not.toMatch(/<script(?! type="application\/ld\+json")/);
+    expect(html.match(/<script(?! type="application\/ld\+json")/g)).toHaveLength(1);
+    expect(html.indexOf(options.themeScript)).toBeLessThan(html.indexOf('rel="stylesheet"'));
     expect(html).not.toContain('type="module"');
   });
 

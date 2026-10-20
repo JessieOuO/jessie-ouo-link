@@ -9,10 +9,17 @@ type DocumentOptions = Readonly<{
   config: SiteConfig;
   stylesheet: string;
   fonts: readonly string[];
+  themeScript: string;
   notFound?: boolean;
 }>;
 
-export function renderDocument({ config, stylesheet, fonts, notFound = false }: DocumentOptions) {
+export function renderDocument({
+  config,
+  stylesheet,
+  fonts,
+  themeScript,
+  notFound = false,
+}: DocumentOptions) {
   const title = notFound ? "Page not found | Jessie Hsieh" : "Jessie Hsieh (OuO) | Personal Home";
   const canonical = !notFound && config.origin ? `${config.origin}/` : null;
   return `<!doctype html>${renderToStaticMarkup(
@@ -30,6 +37,7 @@ export function renderDocument({ config, stylesheet, fonts, notFound = false }: 
         <meta name="color-scheme" content="light dark" />
         <meta name="theme-color" content="#fcfaf5" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#202938" media="(prefers-color-scheme: dark)" />
+        <script>{themeScript}</script>
         {canonical && <link rel="canonical" href={canonical} />}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {fonts.map((font) => (

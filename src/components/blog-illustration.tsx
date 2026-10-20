@@ -13,7 +13,25 @@ export function BlogIllustration() {
           className="scene-ground"
           d="M77 185C91 92 176 60 269 70c91-25 179 30 191 117 31 80-7 166-89 190-79 42-170 25-233-4-81-18-104-111-61-188Z"
         />
-        <circle className="scene-sun" cx="372" cy="124" r="34" />
+        <g className="only-light">
+          <circle className="scene-sun" cx="372" cy="124" r="26" />
+          <path
+            className="sun-rays"
+            d="M372 80v7m0 74v7m-44-44h7m74 0h7m-75-31 5 5m52 52 5 5m-62 0 5-5m52-52 5-5"
+          />
+        </g>
+        <g className="only-dark">
+          <path
+            className="scene-moon"
+            transform="translate(330 82) scale(3.5)"
+            d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+          />
+          <path
+            className="scene-stars"
+            d="m423 91 2-6 2 6 6 2-6 2-2 6-2-6-6-2Zm12 54 1.5-4 1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5Z"
+          />
+          <circle className="scene-stars" cx="340" cy="86" r="2" />
+        </g>
         <path
           className="scene-cloud"
           d="M92 164c-4-15 7-26 20-23 4-19 34-19 37 1 18-7 33 14 20 24Z"

@@ -40,10 +40,27 @@ export async function buildSite(preview = false) {
   const assetPath = (path: string) => path.replace(outputDirectory, "");
   const stylesheet = result.outputs.find((file) => file.path.endsWith(".css"));
   if (!stylesheet) throw new Error("Build did not emit a stylesheet");
+  const client = await Bun.build({
+    entrypoints: [resolve(root, "src/client/theme.ts")],
+    target: "browser",
+    format: "iife",
+    minify: true,
+  });
+  if (!client.success) throw new AggregateError(client.logs, "Theme script build failed");
+  const themeOutput = client.outputs[0];
+  if (!themeOutput) throw new Error("Build did not emit the theme script");
+  const themeScript = await themeOutput.text();
+  const scriptHash = new Bun.CryptoHasher("sha256").update(themeScript).digest("base64");
+  const headerFile = Bun.file(resolve(outputDirectory, "_headers"));
+  await Bun.write(
+    headerFile,
+    (await headerFile.text()).replace("script-src 'none'", `script-src 'sha256-${scriptHash}'`),
+  );
   const documentOptions = {
     config,
     stylesheet: assetPath(stylesheet.path),
     fonts: fonts.map((file) => assetPath(file.path)),
+    themeScript,
   };
   await Bun.write(resolve(outputDirectory, "index.html"), renderDocument(documentOptions));
   await Bun.write(
@@ -61,11 +78,12 @@ export async function buildSite(preview = false) {
   const cssBytes = stylesheet.size;
   const fontBytes = fonts.reduce((sum, font) => sum + font.size, 0);
   // Enforce transfer budgets on uncompressed output, before CDN compression.
-  if (htmlBytes > 12_000 || cssBytes > 12_000 || fontBytes > 80_000) {
+  const scriptBytes = themeOutput.size;
+  if (htmlBytes > 12_000 || cssBytes > 12_000 || fontBytes > 80_000 || scriptBytes > 4_000) {
     throw new Error(`Page exceeds budget: HTML ${htmlBytes}, CSS ${cssBytes}, fonts ${fontBytes}`);
   }
   console.info(
-    `${preview ? "Preview (noindex)" : "Production"} build: HTML ${htmlBytes} B, CSS ${cssBytes} B, fonts ${fontBytes} B, executable JavaScript 0 B`,
+    `${preview ? "Preview (noindex)" : "Production"} build: HTML ${htmlBytes} B (includes ${scriptBytes} B theme script), CSS ${cssBytes} B, fonts ${fontBytes} B`,
   );
   return documentOptions;
 }

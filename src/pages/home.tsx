@@ -1,6 +1,7 @@
 import { ExternalLink } from "../components/external-link.tsx";
 import { FlowerMark } from "../components/flower-mark.tsx";
 import { IdentityCard } from "../components/identity-card.tsx";
+import { ThemeToggle } from "../components/theme-toggle.tsx";
 import { profile } from "../config/site.ts";
 
 export function HomePage() {
@@ -16,6 +17,7 @@ export function HomePage() {
         <nav aria-label="More about Jessie">
           <ExternalLink href={profile.github}>GitHub</ExternalLink>
           <ExternalLink href={profile.blog}>Blog</ExternalLink>
+          <ThemeToggle />
         </nav>
       </header>
       <IdentityCard />

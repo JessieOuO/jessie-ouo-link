@@ -1,16 +1,18 @@
 # A little corner of Jessie’s internet
 
-The current brief preserves the soft palette and rounded Nunito typography, replaces the right-hand character with the owner’s blog image of a cat sitting on a crocodile, removes the image caption and adds a Blog link next to GitHub.
+The current brief preserves the soft palette, rounded Nunito typography and the owner’s cat-on-a-crocodile artwork. The scenery now has a recognizable sun in light mode and a crescent moon with stars in dark mode. A header button switches both the page and the scene.
 
 ## Composition and artwork
 
-The exact requested illustration comes from the Test Automation section of [Jessie’s blog](https://blog.jessie-ouo.link/). Its cream/yellow cat and green crocodile sit over the existing pale blue sky and clouds. A soft yellow sun and pale sage meadow echo the image’s colors. The overall cream background, blue text/button and other page layout remain consistent with the approved cute direction.
+The exact requested illustration comes from the Test Automation section of [Jessie’s blog](https://blog.jessie-ouo.link/). Its cream/yellow cat and green crocodile sit over the existing sky, clouds and pale sage meadow. The daytime sun has soft round rays; at night it becomes a cream crescent with a few small stars. These are decorative SVG shapes, synchronized with the current page theme. The original raster artwork is unchanged.
 
 `BlogIllustration` layers a decorative SVG background with the original transparent artwork. It has meaningful image alt text and no visible text underneath. The art is resized into 480, 640 and 960px lossless WebP variants and served locally with responsive selection, high fetch priority and immutable content-hashed filenames. The full transparent canvas is retained. Source details are in [ASSETS.md](ASSETS.md).
 
 The original bunny, letter, star and their waving animation are removed from the hero. The page keeps its short entrance and control feedback with reduced-motion support. The small existing flower wordmark and footer remain unchanged. The existing favicon is retained.
 
-On a phone the text/action come first, followed by the image. Both header links fit at 320px. System dark mode preserves the original artwork and adapts the sky, meadow and surrounding page. GitHub, Blog and LinkedIn all use real destinations; Blog is also included in the Person structured data.
+On a phone the text/action come first, followed by the image. GitHub, Blog and the 44px theme button fit at 320px; small-screen header spacing adjusts to accommodate the extra control. Light mode shows a moon button, and dark mode shows a sun button. The button has a stable accessible label and `aria-pressed` state, and works with keyboard and touch.
+
+With no saved preference, the page follows live system changes. Clicking saves a manual preference; it persists across reloads and syncs across tabs. A tiny bundled TypeScript enhancement applies the preference before the stylesheet, avoiding a flash of the opposite theme. It needs no React runtime. System colors and the matching scene remain available without JavaScript, with the inactive button hidden. The only new script is permitted through a build-generated CSP hash.
 
 ## Taste Skill context
 
