@@ -1,4 +1,4 @@
-# Jessie Hsieh · OuO
+# Jessie Hsieh · OuO 
 
 A friendly personal homepage with LinkedIn as its primary action, plus GitHub and Blog links. Rounded typography and a soft palette frame the owner’s cat-on-a-crocodile illustration from [Jessie’s blog](https://blog.jessie-ouo.link/). Uses [Taste Skill](https://www.tasteskill.dev/) guidance and the owner’s visual direction.
 
